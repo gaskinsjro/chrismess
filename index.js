@@ -9,15 +9,27 @@ button.addEventListener('click', updateText)
 
 const button2 = document.querySelector('#formStuff')
 
-const addToList = function(ev){
+const addToListFilm = function(ev){
   ev.preventDefault()
-  const f = ev.target
-  const movieName = f.movieName.value
-  const item  = document.createElement('li')
-  item.textContent = movieName
+  const fName = ev.target
+  const movieName = fName.movieName.value
+  const fitem  = document.createElement('li')
+  fitem.textContent = movieName
   const list = document.querySelector('#listStart')
-  list.appendChild(item)
-  
-  f.reset()
+  list.appendChild(fitem)
+  fName.reset()
 }
-button2.addEventListener('submit',addToList)
+
+button2.addEventListener('submit',addToListFilm)
+
+const addToListYear = function(event){
+  event.preventDefault()
+  const yTime = event.target
+  const yearTime = yTime.yearTime.value
+  const yItem = document.createElement('li')
+  yItem.textContent = yearTime
+  const listing = document.querySelector('#yearInput')
+  listing.appendChild(yItem)
+  yTime.reset()
+}
+button2.addEventListener('submit',addToListYear)
