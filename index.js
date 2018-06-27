@@ -9,9 +9,15 @@ button.addEventListener('click', updateText)
 
 const button2 = document.querySelector('#formStuff')
 
-const updateText2 = function(){
-  const a = document.querySelector('#header2')
-  a.textContent = document.querySelector("input").value
-  event.preventDefault()
+const addToList = function(ev){
+  ev.preventDefault()
+  const f = ev.target
+  const movieName = f.movieName.value
+  const item  = document.createElement('li')
+  item.textContent = movieName
+  const list = document.querySelector('#listStart')
+  list.appendChild(item)
+  
+  f.reset()
 }
-button2.addEventListener('click',updateText2)
+button2.addEventListener('click',addToList)
