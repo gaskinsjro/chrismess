@@ -20,4 +20,4 @@ const addToList = function(ev){
   
   f.reset()
 }
-button2.addEventListener('click',addToList)
+button2.addEventListener('submit',addToList)
