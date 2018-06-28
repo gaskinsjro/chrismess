@@ -5,8 +5,13 @@ class App {
       ev.preventDefault()
       this.handleSubmit(ev)
     })
+    this.flicks= []
+    localStorage.setItem('flicks', JSON.stringify(flicks));
+    var retrieval = JSON.parse(localStorage.getItem('flicks'));
+    console.log(retrieval)
+    console.log("json")
   }
-
+    
   renderProperty(name, value) {
     const span = document.createElement('span')
     span.classList.add(name)
@@ -27,15 +32,22 @@ class App {
       const span = this.renderProperty(propertyName, flick[propertyName])
       item.appendChild(span)
     })
-
+    const deleteButton = document.createElement('button')
+    deleteButton.textContent = 'delete'
+    item.appendChild(deleteButton)
+    deleteButton.addEventListener('click', item)
     return item
   }
-
+  removeFlick(ev){
+    const item = ev.target.parentElement
+    const list = item.parentElement
+    list.removeChild()
+  }
   handleSubmit(ev) {
     const f = ev.target
-
+    const deleted = document.querySelector('#deleteIt')
     const flick = {
-      name: f.flickName.value,
+      name: f.flickName.value, 
       chris: f.chrisName.value,
     }
 
@@ -46,6 +58,8 @@ class App {
 
     f.reset()
     f.flickName.focus()
+    this.flicks.push(flick)
+    
   }
 }
 
