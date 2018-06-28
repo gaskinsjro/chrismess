@@ -1,6 +1,6 @@
 
 const form = document.querySelector('#formStuff')
-
+const buttonUse = document.querySelector('#deletingButton');
 
 
 const addToListFilm = function(ev){
@@ -19,7 +19,7 @@ const addToListFilm = function(ev){
   list.appendChild(fitem)
   const testingAdd = flickArray.push(movieName)
   
-  console.log(flickArray)
+  console.log(testingAdd)
   fName.reset()
   addToListYear(ev)
 }
@@ -28,7 +28,7 @@ const deleteButton = function(ev){
       testingAdd.pop(movieName)
     }
   }
-form.addEventListener('deletingButton', deleteButton)
+buttonUse.addEventListener('deletingButton', deleteButton)
 form.addEventListener('submit',addToListFilm)
 
 const addToListYear = function(event){
