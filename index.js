@@ -10,6 +10,8 @@ const addToListFilm = function(ev){
   const movieName = fName.movieName.value
   const fitem  = document.createElement('span')
 
+
+
   fitem.textContent = movieName
 
   const list = document.querySelector('#listStart')
