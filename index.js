@@ -1,45 +1,52 @@
-
-const form = document.querySelector('#formStuff')
-const buttonUse = document.querySelector('#deletingButton');
-
-
-const addToListFilm = function(ev){
-  ev.preventDefault()
-  const flickArray = []
-  const fName = ev.target
-  const movieName = fName.movieName.value
-  const fitem  = document.createElement('span')
-
-
-
-  fitem.textContent = movieName
-
-  const list = document.querySelector('#listStart')
-
-  list.appendChild(fitem)
-  const testingAdd = flickArray.push(movieName)
-  
-  console.log(testingAdd)
-  fName.reset()
-  addToListYear(ev)
-}
-const deleteButton = function(ev){
-    yes.OnClick() = function(){
-      testingAdd.pop(movieName)
-    }
+class App {
+  constructor() {
+    const form = document.querySelector('form#flickForm')
+    form.addEventListener('submit', (ev) => {
+      ev.preventDefault()
+      this.handleSubmit(ev)
+    })
   }
-buttonUse.addEventListener('deletingButton', deleteButton)
-form.addEventListener('submit',addToListFilm)
 
-const addToListYear = function(event){
-  console.log("add list to function")
-  const yTime = event.target
-  console.log(yTime.yearTime.value)
-  const yearTime = yTime.yearTime.value
+  renderProperty(name, value) {
+    const span = document.createElement('span')
+    span.classList.add(name)
+    span.textContent = value
+    return span
+  }
 
-  const yItem = document.createElement('span')
-  console.log(yearTime)
-  yItem.textContent = yearTime
-  const listing = document.querySelector('#yearInput')
-  listing.appendChild(yItem)
+  renderItem(flick) {
+    const item = document.createElement('li')
+    item.classList.add('flick')
+
+    // get the list of properties
+    const properties = Object.keys(flick)
+
+    // loop over the properties
+    properties.forEach((propertyName) => {
+      // build a span, and append it to the list
+      const span = this.renderProperty(propertyName, flick[propertyName])
+      item.appendChild(span)
+    })
+
+    return item
+  }
+
+  handleSubmit(ev) {
+    const f = ev.target
+
+    const flick = {
+      name: f.flickName.value,
+      chris: f.chrisName.value,
+    }
+
+    const item = this.renderItem(flick)
+
+    const list = document.querySelector('#flicks')
+    list.appendChild(item)
+
+    f.reset()
+    f.flickName.focus()
+  }
 }
+
+const app = new App()
